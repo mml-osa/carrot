@@ -14,12 +14,11 @@ return new class extends Migration {
     Schema::create('user_profiles', function (Blueprint $table) {
       $table->uuid('id')->primary();
       $table->uuid('user_id')->nullable(false);
-      $table->string('first_name')->nullable(false);
-      $table->string('last_name')->nullable(false);
-      $table->string('address')->nullable(false);
-      $table->integer('phone')->nullable(false);
-      $table->string('location_lat')->nullable(false);
-      $table->string('location_long')->nullable(false);
+      $table->string('first_name',65)->nullable(false);
+      $table->string('last_name',255)->nullable(false);
+      $table->string('phone_number',25)->nullable(false);
+      $table->text('location_address')->nullable(false);
+      $table->uuid('updated_by')->nullable(true);
       $table->timestampsTz();
     });
   }
