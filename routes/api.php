@@ -14,6 +14,40 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+Route::get('/test', function (){
+  return "Working";
+});
+
+
+Route::group(['prefix'=>'carrot-project/', 'namespace'=>'App\Http\Controllers'], function () {
+
+  Route::group(['prefix'=>'restaurant/'], function () {
+    Route::get('all/', function () {
+      return 'Restaurant Working!';
+    });
+  });
+
+  Route::group(['prefix'=>'menu/'], function () {
+    Route::get('menu-items/', function () {
+      return 'Menu Working!';
+    });
+  });
+
+  Route::group(['prefix'=>'order/'], function () {
+    Route::get('all-orders/', function () {
+      return 'Order Working!';
+    });
+  });
+
+  Route::group(['prefix'=>'user/'], function () {
+    Route::get('all-users/', function () {
+      return 'User Working!';
+    });
+  });
+
+});
+
+
+Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });

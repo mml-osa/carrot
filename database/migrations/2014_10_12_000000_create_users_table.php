@@ -19,6 +19,7 @@ return new class extends Migration {
       $table->string('password')->nullable(false);
       $table->string('user_role')->nullable(false);
       $table->boolean('is_active')->default(true);
+      $table->uuid('updated_by')->nullable(true);
       $table->rememberToken();
       $table->timestampsTz();
     });

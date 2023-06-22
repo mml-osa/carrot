@@ -17,6 +17,8 @@ return new class extends Migration {
       $table->string('delivery_status')->nullable(false);
       $table->string('delivery_by')->nullable(false);
       $table->text('delivery_notes')->nullable(true);
+      $table->uuid('created_by')->nullable(false);
+      $table->uuid('updated_by')->nullable(true);
       $table->timestampsTz();
     });
   }
