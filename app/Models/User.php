@@ -9,7 +9,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
-class UserModel extends Authenticatable
+class User extends Authenticatable
 {
   use HasApiTokens, HasFactory, Notifiable, UuidGenerator;
 
@@ -22,7 +22,7 @@ class UserModel extends Authenticatable
     'username',
     'email',
     'password',
-    'user_role',
+    'user_role_id',
     'is_active',
     'updated_by',
   ];

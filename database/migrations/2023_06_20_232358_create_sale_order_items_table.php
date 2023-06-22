@@ -18,8 +18,6 @@ return new class extends Migration {
       $table->double('menu_item_price')->nullable(false);
       $table->integer('quantity')->default(0)->nullable(false);
       $table->double('menu_item_total_price')->default(0)->nullable(false);
-      $table->uuid('created_by')->nullable(false);
-      $table->uuid('updated_by')->nullable(true);
       $table->timestampsTz();
     });
   }

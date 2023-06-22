@@ -13,7 +13,7 @@ return new class extends Migration {
     Schema::dropIfExists('sale_orders');
     Schema::create('sale_orders', function (Blueprint $table) {
       $table->uuid('id')->primary();
-      $table->integer('order_code')->autoIncrement();
+      $table->integer('order_code');
       $table->uuid('user_id')->nullable(false);
       $table->double('order_amount')->nullable(false);
       $table->string('order_type')->nullable(false);
