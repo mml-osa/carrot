@@ -14,6 +14,7 @@ return new class extends Migration {
     Schema::create('restaurants', function (Blueprint $table) {
       $table->uuid('id')->primary();
       $table->string('name',225)->nullable(false);
+      $table->string('alias',225)->nullable(false);
       $table->string('email_address',255)->nullable(false);
       $table->string('phone_number',25)->nullable(false);
       $table->text('location_address',255)->nullable(false);

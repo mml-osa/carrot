@@ -14,7 +14,9 @@ return new class extends Migration {
     Schema::create('sale_order_deliveries', function (Blueprint $table) {
       $table->uuid('id')->primary();
       $table->uuid('sale_order_id')->nullable(false);
-      $table->string('delivery_status')->nullable(false);
+      $table->foreign('sale_order_id')->references('id')->on('sale_orders')->onDelete('cascade');
+      $table->uuid('delivery_status_id')->nullable(false);
+      $table->foreign('delivery_status_id')->references('id')->on('delivery_statuses')->onDelete('cascade');
       $table->string('delivery_by')->nullable(false);
       $table->text('delivery_notes')->nullable(true);
       $table->uuid('created_by')->nullable(false);

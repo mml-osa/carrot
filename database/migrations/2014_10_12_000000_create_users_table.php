@@ -21,10 +21,7 @@ return new class extends Migration {
       $table->timestamp('email_verified_at')->nullable(true);
       $table->string('password')->nullable(false);
       $table->uuid('role_id')->nullable(false);
-      $table->foreign('role_id')
-        ->references('id')
-        ->on('roles')
-        ->onDelete('cascade');
+      $table->foreign('role_id')->references('id')->on('roles')->onDelete('cascade');
       $table->boolean('is_active')->default(true);
       $table->uuid('updated_by')->nullable(true);
       $table->rememberToken();

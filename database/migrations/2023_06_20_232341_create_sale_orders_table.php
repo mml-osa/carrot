@@ -20,9 +20,9 @@ return new class extends Migration {
       $table->uuid('order_type_id')->nullable(false);
       $table->foreign('order_type_id')->references('id')->on('order_types')->onDelete('cascade');
       $table->uuid('order_channel_id')->nullable(false);
-      $table->foreign('order_channel_id')->references('id')->on('order_channel')->onDelete('cascade');
+      $table->foreign('order_channel_id')->references('id')->on('order_channels')->onDelete('cascade');
       $table->uuid('order_status_id')->nullable(false);
-      $table->foreign('order_status_id')->references('id')->on('order_status')->onDelete('cascade');
+      $table->foreign('order_status_id')->references('id')->on('order_statuses')->onDelete('cascade');
       $table->text('order_notes')->nullable(true);
       $table->uuid('created_by')->nullable(false);
       $table->uuid('updated_by')->nullable(true);

@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Laravel\Sanctum\HasApiTokens;
 
-class OrderStatus extends Model
+class MenuItemSize extends Model
 {
   use HasApiTokens, HasFactory, UuidGenerator;
 
@@ -16,7 +16,7 @@ class OrderStatus extends Model
    *
    * @var array<string, string>
    */
-  protected $table = 'order_statuses';
+  protected $table = 'menu_item_sizes';
 
   /**
    * The primary key of the table.

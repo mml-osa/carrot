@@ -10,13 +10,15 @@ return new class extends Migration {
    */
   public function up(): void
   {
-    Schema::dropIfExists('order_channels');
-    Schema::create('order_channels', function (Blueprint $table) {
+    Schema::dropIfExists('menu_item_categories');
+    Schema::create('menu_item_categories', function (Blueprint $table) {
       $table->uuid('id')->primary();
-      $table->string('name', 35)->nullable(false);
-      $table->string('alias', 35)->nullable(true);
+      $table->string('name', 255)->nullable(false);
+      $table->string('alias', 255)->nullable(false);
       $table->text('description')->nullable(true);
       $table->boolean('is_active')->default(true);
+      $table->uuid('created_by')->nullable(true);
+      $table->uuid('updated_by')->nullable(true);
       $table->timestampsTz();
     });
   }
@@ -26,6 +28,6 @@ return new class extends Migration {
    */
   public function down(): void
   {
-    Schema::dropIfExists('order_channels');
+    Schema::dropIfExists('menu_item_categories');
   }
 };

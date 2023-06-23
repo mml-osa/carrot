@@ -14,10 +14,13 @@ return new class extends Migration {
     Schema::create('menu_items', function (Blueprint $table) {
       $table->uuid('id')->primary();
       $table->uuid('menu_item_category_id')->nullable(false);
+      $table->foreign('menu_item_category_id')->references('id')->on('menu_item_categories')->onDelete('cascade');
       $table->string('name', 255)->nullable(false);
+      $table->string('alias', 255)->nullable(false);
       $table->text('description')->nullable(true);
       $table->double('menu_item_price')->nullable(false);
-      $table->string('menu_item_size')->nullable(false);
+      $table->uuid('menu_item_size_id')->nullable(false);
+      $table->foreign('menu_item_size_id')->references('id')->on('menu_item_sizes')->onDelete('cascade');
       $table->boolean('is_active')->default(true);
       $table->uuid('created_by')->nullable(false);
       $table->uuid('updated_by')->nullable(true);
