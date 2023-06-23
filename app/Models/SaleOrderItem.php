@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Laravel\Sanctum\HasApiTokens;
 
-class SaleOrderModel extends Model
+class SaleOrderItem extends Model
 {
   use HasApiTokens, HasFactory, UuidGenerator;
 
@@ -17,13 +17,11 @@ class SaleOrderModel extends Model
    * @var array<int, string>
    */
   protected $fillable = [
-    'order_code',
-    'user_id',
-    'order_amount',
-    'order_type',
-    'order_channel',
-    'order_status',
-    'order_notes',
+    'menu_item_id',
+    'sale_order_id',
+    'menu_item_price',
+    'quantity',
+    'menu_item_total_price',
     'created_by',
     'updated_by',
   ];

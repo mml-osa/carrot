@@ -14,6 +14,20 @@ class User extends Authenticatable
   use HasApiTokens, HasFactory, Notifiable, UuidGenerator;
 
   /**
+   * The table name.
+   *
+   * @var array<string, string>
+   */
+  protected $table = 'users';
+
+  /**
+   * The primary key of the table.
+   *
+   * @var array<string, string>
+   */
+  protected $primaryKey = 'id';
+
+  /**
    * The attributes that are mass assignable.
    *
    * @var array<int, string>
@@ -22,7 +36,7 @@ class User extends Authenticatable
     'username',
     'email',
     'password',
-    'user_role_id',
+    'role_id',
     'is_active',
     'updated_by',
   ];
@@ -46,4 +60,15 @@ class User extends Authenticatable
     'email_verified_at' => 'datetime',
     'password' => 'hashed',
   ];
+
+
+  public function role()
+  {
+    return $this->belongsTo(Role::class);
+  }
+
+  public function profile()
+  {
+    return $this->hasOne(UserProfile::class);
+  }
 }

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\SaleOrderModel;
+use App\Models\SaleOrder;
 use Illuminate\Http\Request;
 
 class SaleOrderController extends Controller
@@ -34,7 +34,7 @@ class SaleOrderController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(SaleOrderModel $saleOrder)
+    public function show(SaleOrder $saleOrder)
     {
         //
     }
@@ -42,7 +42,7 @@ class SaleOrderController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(SaleOrderModel $saleOrder)
+    public function edit(SaleOrder $saleOrder)
     {
         //
     }
@@ -50,7 +50,7 @@ class SaleOrderController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, SaleOrderModel $saleOrder)
+    public function update(Request $request, SaleOrder $saleOrder)
     {
         //
     }
@@ -58,7 +58,7 @@ class SaleOrderController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(SaleOrderModel $saleOrder)
+    public function destroy(SaleOrder $saleOrder)
     {
         //
     }

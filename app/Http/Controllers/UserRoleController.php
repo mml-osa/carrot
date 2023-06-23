@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\UserRoleModel;
+use App\Models\User;
+use App\Models\Role;
 use Illuminate\Http\Request;
 
 class UserRoleController extends Controller
@@ -12,7 +13,8 @@ class UserRoleController extends Controller
      */
     public function index()
     {
-        //
+        $all_users = User::all();
+        return Controller::response(200,true, User::with('profile')->with('role')->get());
     }
 
     /**
@@ -34,7 +36,7 @@ class UserRoleController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(UserRoleModel $userRole)
+    public function show(Role $userRole)
     {
         //
     }
@@ -42,7 +44,7 @@ class UserRoleController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(UserRoleModel $userRole)
+    public function edit(Role $userRole)
     {
         //
     }
@@ -50,7 +52,7 @@ class UserRoleController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, UserRoleModel $userRole)
+    public function update(Request $request, Role $userRole)
     {
         //
     }
@@ -58,7 +60,7 @@ class UserRoleController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(UserRoleModel $userRole)
+    public function destroy(Role $userRole)
     {
         //
     }

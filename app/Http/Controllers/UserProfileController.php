@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\UserProfileModel;
+use App\Models\UserProfile;
 use Illuminate\Http\Request;
 
 class UserProfileController extends Controller
@@ -34,7 +34,7 @@ class UserProfileController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(UserProfileModel $userProfile)
+    public function show(UserProfile $userProfile)
     {
         //
     }
@@ -42,7 +42,7 @@ class UserProfileController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(UserProfileModel $userProfile)
+    public function edit(UserProfile $userProfile)
     {
         //
     }
@@ -50,7 +50,7 @@ class UserProfileController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, UserProfileModel $userProfile)
+    public function update(Request $request, UserProfile $userProfile)
     {
         //
     }
@@ -58,7 +58,7 @@ class UserProfileController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(UserProfileModel $userProfile)
+    public function destroy(UserProfile $userProfile)
     {
         //
     }

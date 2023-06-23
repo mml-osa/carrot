@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\RestaurantModel;
+use App\Models\Restaurant;
 use Illuminate\Http\Request;
 
 class RestaurantController extends Controller
@@ -34,7 +34,7 @@ class RestaurantController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(RestaurantModel $restaurant)
+    public function show(Restaurant $restaurant)
     {
         //
     }
@@ -42,7 +42,7 @@ class RestaurantController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(RestaurantModel $restaurant)
+    public function edit(Restaurant $restaurant)
     {
         //
     }
@@ -50,7 +50,7 @@ class RestaurantController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, RestaurantModel $restaurant)
+    public function update(Request $request, Restaurant $restaurant)
     {
         //
     }
@@ -58,7 +58,7 @@ class RestaurantController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(RestaurantModel $restaurant)
+    public function destroy(Restaurant $restaurant)
     {
         //
     }

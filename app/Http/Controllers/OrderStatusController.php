@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\SaleOrderPayment;
+use App\Models\OrderStatus;
 use Illuminate\Http\Request;
 
-class SaleOrderPaymentController extends Controller
+class OrderStatusController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -34,7 +34,7 @@ class SaleOrderPaymentController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(SaleOrderPayment $saleOrderPayment)
+    public function show(OrderStatus $orderStatus)
     {
         //
     }
@@ -42,7 +42,7 @@ class SaleOrderPaymentController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(SaleOrderPayment $saleOrderPayment)
+    public function edit(OrderStatus $orderStatus)
     {
         //
     }
@@ -50,7 +50,7 @@ class SaleOrderPaymentController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, SaleOrderPayment $saleOrderPayment)
+    public function update(Request $request, OrderStatus $orderStatus)
     {
         //
     }
@@ -58,7 +58,7 @@ class SaleOrderPaymentController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(SaleOrderPayment $saleOrderPayment)
+    public function destroy(OrderStatus $orderStatus)
     {
         //
     }

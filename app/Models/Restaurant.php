@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Laravel\Sanctum\HasApiTokens;
 
-class UserRoleModel extends Model
+class Restaurant extends Model
 {
   use HasApiTokens, HasFactory, UuidGenerator;
 
@@ -18,7 +18,10 @@ class UserRoleModel extends Model
    */
   protected $fillable = [
     'name',
-    'alias',
-    'description',
+    'email_address',
+    'phone_number',
+    'location_address',
+    'created_by',
+    'updated_by',
   ];
 }

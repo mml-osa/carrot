@@ -7,9 +7,23 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Laravel\Sanctum\HasApiTokens;
 
-class RestaurantModel extends Model
+class OrderType extends Model
 {
   use HasApiTokens, HasFactory, UuidGenerator;
+
+  /**
+   * The table name.
+   *
+   * @var array<string, string>
+   */
+  protected $table = 'order_types';
+
+  /**
+   * The primary key of the table.
+   *
+   * @var array<string, string>
+   */
+  protected $primaryKey = 'id';
 
   /**
    * The attributes that are mass assignable.
@@ -18,10 +32,12 @@ class RestaurantModel extends Model
    */
   protected $fillable = [
     'name',
-    'email_address',
-    'phone_number',
-    'location_address',
-    'created_by',
-    'updated_by',
+    'alias',
+    'description',
   ];
+
+  public function order()
+  {
+    return $this->belongsTo(SaleOrder::class);
+  }
 }

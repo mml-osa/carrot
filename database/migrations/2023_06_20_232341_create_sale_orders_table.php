@@ -15,10 +15,14 @@ return new class extends Migration {
       $table->uuid('id')->primary();
       $table->integer('order_code');
       $table->uuid('user_id')->nullable(false);
+      $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
       $table->double('order_amount')->nullable(false);
-      $table->string('order_type')->nullable(false);
-      $table->string('order_channel')->nullable(false);
-      $table->string('order_status')->nullable(false);
+      $table->uuid('order_type_id')->nullable(false);
+      $table->foreign('order_type_id')->references('id')->on('order_types')->onDelete('cascade');
+      $table->uuid('order_channel_id')->nullable(false);
+      $table->foreign('order_channel_id')->references('id')->on('order_channel')->onDelete('cascade');
+      $table->uuid('order_status_id')->nullable(false);
+      $table->foreign('order_status_id')->references('id')->on('order_status')->onDelete('cascade');
       $table->text('order_notes')->nullable(true);
       $table->uuid('created_by')->nullable(false);
       $table->uuid('updated_by')->nullable(true);

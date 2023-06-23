@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\MenuItemCategoryModel;
+use App\Models\MenuItemCategory;
 use Illuminate\Http\Request;
 
 class MenuItemCategoryController extends Controller
@@ -34,7 +34,7 @@ class MenuItemCategoryController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(MenuItemCategoryModel $menuItemCategory)
+    public function show(MenuItemCategory $menuItemCategory)
     {
         //
     }
@@ -42,7 +42,7 @@ class MenuItemCategoryController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(MenuItemCategoryModel $menuItemCategory)
+    public function edit(MenuItemCategory $menuItemCategory)
     {
         //
     }
@@ -50,7 +50,7 @@ class MenuItemCategoryController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, MenuItemCategoryModel $menuItemCategory)
+    public function update(Request $request, MenuItemCategory $menuItemCategory)
     {
         //
     }
@@ -58,7 +58,7 @@ class MenuItemCategoryController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(MenuItemCategoryModel $menuItemCategory)
+    public function destroy(MenuItemCategory $menuItemCategory)
     {
         //
     }

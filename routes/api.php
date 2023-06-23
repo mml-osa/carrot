@@ -40,14 +40,16 @@ Route::group(['prefix'=>'carrot-project/', 'namespace'=>'App\Http\Controllers'],
   });
 
   Route::group(['prefix'=>'user/'], function () {
-    Route::get('all-users/', function () {
-      return 'User Working!';
-    });
+    Route::get('all/', [\App\Http\Controllers\UserRoleController::class, 'index']);
+  });
+
+  Route::group(['prefix'=>'role/'], function () {
+    Route::get('all/', [\App\Http\Controllers\UserRoleController::class, 'index']);
   });
 
 });
 
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
+Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });

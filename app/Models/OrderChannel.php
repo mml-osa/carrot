@@ -7,9 +7,23 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Laravel\Sanctum\HasApiTokens;
 
-class MenuItemCategoryModel extends Model
+class OrderChannel extends Model
 {
   use HasApiTokens, HasFactory, UuidGenerator;
+
+  /**
+   * The table name.
+   *
+   * @var array<string, string>
+   */
+  protected $table = 'order_channels';
+
+  /**
+   * The primary key of the table.
+   *
+   * @var array<string, string>
+   */
+  protected $primaryKey = 'id';
 
   /**
    * The attributes that are mass assignable.
@@ -18,10 +32,12 @@ class MenuItemCategoryModel extends Model
    */
   protected $fillable = [
     'name',
+    'alias',
     'description',
-    'is_active',
-    'created_by',
-    'updated_by',
   ];
 
+  public function user()
+  {
+    return $this->belongsTo(SaleOrder::class);
+  }
 }

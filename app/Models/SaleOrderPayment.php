@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Laravel\Sanctum\HasApiTokens;
 
-class MenuItemModel extends Model
+class SaleOrderPayment extends Model
 {
   use HasApiTokens, HasFactory, UuidGenerator;
 
@@ -17,12 +17,11 @@ class MenuItemModel extends Model
    * @var array<int, string>
    */
   protected $fillable = [
-    'menu_item_category_id',
-    'name',
-    'description',
-    'menu_item_price',
-    'menu_item_size',
-    'is_active',
+    'sale_order_id',
+    'amount_paid',
+    'change',
+    'payment_mode',
+    'payment_notes',
     'created_by',
     'updated_by',
   ];

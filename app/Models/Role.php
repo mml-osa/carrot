@@ -7,9 +7,23 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Laravel\Sanctum\HasApiTokens;
 
-class UserProfileModel extends Model
+class Role extends Model
 {
   use HasApiTokens, HasFactory, UuidGenerator;
+
+  /**
+   * The table name.
+   *
+   * @var array<string, string>
+   */
+  protected $table = 'roles';
+
+  /**
+   * The primary key of the table.
+   *
+   * @var array<string, string>
+   */
+  protected $primaryKey = 'id';
 
   /**
    * The attributes that are mass assignable.
@@ -17,11 +31,13 @@ class UserProfileModel extends Model
    * @var array<int, string>
    */
   protected $fillable = [
-    'user_id',
-    'first_name',
-    'last_name',
-    'phone_number',
-    'location_address',
-    'updated_by',
+    'name',
+    'alias',
+    'description',
   ];
+
+  public function user()
+  {
+    return $this->belongsTo(Role::class);
+  }
 }
