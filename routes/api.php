@@ -40,11 +40,15 @@ Route::group(['prefix'=>'carrot-project/', 'namespace'=>'App\Http\Controllers'],
   });
 
   Route::group(['prefix'=>'user/'], function () {
-    Route::get('all/', [\App\Http\Controllers\UserController::class, 'index']);
+    Route::get('get/', [\App\Http\Controllers\UserController::class, 'index']);
+    Route::post('create/', [\App\Http\Controllers\UserController::class, 'create']);
+    Route::put('update/{user}', [\App\Http\Controllers\UserController::class, 'update']);
+    Route::delete('delete/{user}', [\App\Http\Controllers\UserController::class, 'delete']);
   });
 
   Route::group(['prefix'=>'role/'], function () {
     Route::get('all/', [\App\Http\Controllers\UserRoleController::class, 'index']);
+    Route::post('store/', [\App\Http\Controllers\UserRoleController::class, 'store']);
   });
 
 });

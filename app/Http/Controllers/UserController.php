@@ -5,63 +5,135 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Role;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
+use OpenApi\Annotations as OA;
 
 class UserController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        $all_users = User::all();
-        return Controller::response(200,true, User::with('profile')->with('role')->get());
-    }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
+  /**
+   * @OA\Get(
+   *   path="/users",
+   *   operationId="getProjectsList",
+   *   tags={"Projects"},
+   *   summary="Get list of users",
+   *   description="Returns list of all users",
+   *   parameters="/",
+   *
+   *   @OA\Response(
+   *   response=200,
+   *   description="Successful Operation",
+   * ),
+   *
+   *   @OA\Response(
+   *   response=400,
+   *   description="Bad Request"
+   * ),
+   *
+   *   @OA\Response(
+   *   response=401,
+   *   description="Unauthenticated",
+   * ),
+   *
+   *   @OA\Response(
+   *   response=403,
+   *   description="Forbidden"
+   * ),
+   *
+   *   @OA\Response(
+   *   response=404,
+   *   description="Not Found"
+   * ),
+   *
+   *   @OA\Response(
+   *   response=500,
+   *   description="Internal Server Error"
+   * ),
+   *
+   * )
+   */
+  public function index()
+  {
+    try {
+      return Controller::response(200, true, User::with('role')->get());
+    } catch (\Exception $e) { throw new \HttpException('Error! ', $e->getMessage(), $e->getCode()); }
+  }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
+  /**
+   * Store a newly created resource in storage.
+   */
+  public function create(Request $request)
+  {
+    try {
+      $validator = Validator::make($request->all(), [
+        "username" => 'required|string|min:1|max:65|unique:users,username',
+        "first_name" => 'required|string|min:1|max:65',
+        "last_name" => 'required|string|min:1|max:255',
+        "phone_number" => 'required|string|min:1|max:25|unique:users,phone_number',
+        "email" => 'required|email|min:1|max:255|unique:users,email',
+        "password" => 'required|string|min:1|max:225',
+      ]);
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Role $userRole)
-    {
-        //
-    }
+      if ($validator->fails()){
+        return Controller::response(400, false, $validator->errors()->all());
+      }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Role $userRole)
-    {
-        //
-    }
+      $request->merge(['password'=>Hash::make($request->password)]);
+      $store = User::create($request->all());
+      return Controller::response(201, true, User::where('id',$store->id)->with('role')->get());
+    } catch (\Exception $e) { return Controller::response(400, false, $e->getMessage()); }
+  }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Role $userRole)
-    {
-        //
-    }
+  /**
+   * Display the specified resource.
+   */
+  public function show(Role $userRole)
+  {
+    //
+  }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Role $userRole)
-    {
-        //
-    }
+  /**
+   * Show the form for editing the specified resource.
+   */
+  public function edit(Role $userRole)
+  {
+    //
+  }
+
+  /**
+   * Update the specified resource in storage.
+   */
+  public function update(Request $request, User $user)
+  {
+    try {
+      $validator = Validator::make($request->all(), [
+        "username" => 'sometimes|required|string|min:1|max:65|unique:users,username,'.$user->id,
+        "first_name" => 'sometimes|required|string|min:1|max:65',
+        "last_name" => 'sometimes|required|string|min:1|max:255',
+        "phone_number" => 'sometimes|required|string|min:1|max:25|unique:users,phone_number,'.$user->id,
+        "email" => 'sometimes|required|email|min:1|max:255|unique:users,email,'.$user->id,
+        "password" => 'sometimes|required|string|min:1|max:225',
+      ]);
+
+      if ($validator->fails()){
+        return Controller::response(400, false, $validator->errors()->all());
+      }
+      $request->merge(['password'=>Hash::make($request->password)]);
+      $update = $user->update($request->all());
+      return Controller::response(201, true, $user::where('id',$user->id)->with('role')->get());
+    } catch (\Exception $e) { return Controller::response(400, false, $e->getMessage()); }
+  }
+
+  /**
+   * Remove the specified resource from storage.
+   */
+  public function delete(User $user)
+  {
+    return $user;
+    try {
+      $delete = $user->delete();
+      return Controller::response(200, true, $user::where('id',$user->id)->with('role')->get());
+    } catch (\Exception $e) { return Controller::response(400, false, $e->getMessage()); }
+  }
 }

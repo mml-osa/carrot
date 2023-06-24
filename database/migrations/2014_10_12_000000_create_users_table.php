@@ -17,6 +17,10 @@ return new class extends Migration {
     Schema::create('users', function (Blueprint $table) {
       $table->uuid('id')->primary();
       $table->string('username', 65)->unique()->nullable(false);
+      $table->string('first_name',65)->nullable(false);
+      $table->string('last_name',255)->nullable(false);
+      $table->string('phone_number',25)->nullable(false);
+      $table->text('location_address')->nullable(false);
       $table->string('email', 255)->unique()->nullable(false);
       $table->timestamp('email_verified_at')->nullable(true);
       $table->string('password')->nullable(false);
@@ -27,14 +31,6 @@ return new class extends Migration {
       $table->rememberToken();
       $table->timestampsTz();
     });
-
-    $super_admin = Role::where('alias', 'super_admin')->first();
-    $admin = Role::where('alias', 'admin')->first();
-    $user = Role::where('alias', 'user')->first();
-
-    User::create(['username' => 'SuperAdmin', 'email' => 'superadmin@carrotproject.io', 'email_verified_at' => now(), 'password' => Hash::make('superadmin'), 'role_id' => $super_admin->id]);
-    User::create(['username' => 'Admin', 'email' => 'dmin@carrotproject.io', 'email_verified_at' => now(), 'password' => Hash::make('admin'), 'role_id' => $admin->id]);
-    User::create(['username' => 'User', 'email' => 'user@carrotproject.io', 'email_verified_at' => now(), 'password' => Hash::make('user'), 'role_id' => $user->id]);
   }
 
   /**

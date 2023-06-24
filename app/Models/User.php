@@ -34,6 +34,10 @@ class User extends Authenticatable
    */
   protected $fillable = [
     'username',
+    'first_name',
+    'last_name',
+    'phone_number',
+    'location_address',
     'email',
     'password',
     'role_id',
@@ -65,10 +69,5 @@ class User extends Authenticatable
   public function role()
   {
     return $this->belongsTo(Role::class);
-  }
-
-  public function profile()
-  {
-    return $this->hasOne(UserProfile::class);
   }
 }
