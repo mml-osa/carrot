@@ -13,8 +13,8 @@ return new class extends Migration {
     Schema::dropIfExists('menu_items');
     Schema::create('menu_items', function (Blueprint $table) {
       $table->uuid('id')->primary();
-      $table->uuid('menu_item_category_id')->nullable(false);
-      $table->foreign('menu_item_category_id')->references('id')->on('menu_item_categories')->cascadeOnDelete()->cascadeOnUpdate();
+      $table->uuid('menu_id')->nullable(false);
+      $table->foreign('menu_id')->references('id')->on('menus')->cascadeOnDelete()->cascadeOnUpdate();
       $table->string('name', 255)->nullable(false);
       $table->double('menu_item_price')->nullable(false);
       $table->uuid('menu_item_size_id')->nullable(false);

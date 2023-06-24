@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Laravel\Sanctum\HasApiTokens;
 
-class MenuItemCategory extends Model
+class Menu extends Model
 {
   use HasApiTokens, UuidGenerator;
 
@@ -16,7 +16,7 @@ class MenuItemCategory extends Model
    *
    * @var array<string, string>
    */
-  protected $table = 'menu_item_categories';
+  protected $table = 'menus';
 
   /**
    * The primary key of the table.
@@ -31,6 +31,7 @@ class MenuItemCategory extends Model
    * @var array<int, string>
    */
   protected $fillable = [
+    'restaurant_id',
     'name',
     'alias',
     'description',
@@ -49,5 +50,4 @@ class MenuItemCategory extends Model
   {
     return $this->hasMany(MenuItem::class);
   }
-
 }

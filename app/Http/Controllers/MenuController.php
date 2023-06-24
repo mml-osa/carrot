@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\MenuItem;
 use App\Models\Restaurant;
+use App\Models\Menu;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
-class MenuItemController extends Controller
+class MenuController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +15,7 @@ class MenuItemController extends Controller
     public function index()
     {
       try {
-        return Controller::response(200, true, MenuItem::with('menu')->get());
+        return Controller::response(200, true, Menu::with('restaurant')->get());
       } catch (\Exception $e) {
         return Controller::response(400, false, $e->getMessage());
       }
@@ -28,18 +28,16 @@ class MenuItemController extends Controller
     {
       try {
         $validator = Validator::make($request->all(), [
-          "menu_item_category_id" => 'required|uuid',
           "name" => 'required|string|min:1|max:255',
-          "menu_item_price" => 'required|integer',
-          "menu_item_size_id" => 'required|uuid',
+          "description" => 'required|string|min:1|max:255',
         ]);
 
         if ($validator->fails()) {
           return Controller::response(400, false, $validator->errors()->all());
         }
 
-        $store = MenuItem::create($request->all());
-        return Controller::response(201, true, MenuItem::where('id', $store->id)->with('menu')->get());
+        $store = Menu::create($request->all());
+        return Controller::response(201, true, Menu::where('id', $store->id)->with('menu')->get());
       } catch (\Exception $e) {
         return Controller::response(400, false, $e->getMessage());
       }
@@ -48,10 +46,10 @@ class MenuItemController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(MenuItem $menuItem)
+    public function show(Menu $menu)
     {
       try {
-        return Controller::response(200, true, MenuItem::where('id', $menuItem->id)->with('menu')->first());
+        return Controller::response(200, true, Menu::where('id', $menu->id)->with('menu')->first());
       } catch (\Exception $e) {
         return Controller::response(400, false, $e->getMessage());
       }
@@ -60,7 +58,7 @@ class MenuItemController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(MenuItem $menuItem)
+    public function edit(Menu $menu)
     {
         //
     }
@@ -68,22 +66,20 @@ class MenuItemController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, MenuItem $menuItem)
+    public function update(Request $request, Menu $menu)
     {
       try {
         $validator = Validator::make($request->all(), [
-          "menu_item_category_id" => 'sometimes|required|uuid',
           "name" => 'sometimes|required|string|min:1|max:255',
-          "menu_item_price" => 'sometimes|required|integer',
-          "menu_item_size_id" => 'sometimes|required|uuid',
+          "description" => 'sometimes|required|string|min:1|max:255',
         ]);
 
         if ($validator->fails()) {
           return Controller::response(400, false, $validator->errors()->all());
         }
 
-        $update = $menuItem->update($request->all());
-        return Controller::response(201, true, $menuItem::where('id', $menuItem->id)->with('menu')->get());
+        $update = $menu->update($request->all());
+        return Controller::response(201, true, $menu::where('id', $menu->id)->with('menu')->get());
       } catch (\Exception $e) {
         return Controller::response(400, false, $e->getMessage());
       }
@@ -92,7 +88,7 @@ class MenuItemController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(MenuItem $menuItem)
+    public function destroy(Menu $menu)
     {
         //
     }

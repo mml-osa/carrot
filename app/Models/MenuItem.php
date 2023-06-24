@@ -17,7 +17,7 @@ class MenuItem extends Model
    * @var array<int, string>
    */
   protected $fillable = [
-    'menu_item_category_id',
+    'menu_id',
     'name',
     'menu_item_price',
     'menu_item_size_id',
@@ -37,6 +37,6 @@ class MenuItem extends Model
 
   public function menu()
   {
-    return $this->hasMany(RestaurantMenu::class,'menu_item_category_id','id');
+    return $this->belongsTo(Menu::class,'menu_id','id');
   }
 }

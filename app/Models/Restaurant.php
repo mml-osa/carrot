@@ -52,6 +52,6 @@ class Restaurant extends Model
 
   public function menu()
   {
-    return $this->hasMany(RestaurantMenu::class,'menu_item_category_id','id');
+    return $this->hasMany(Menu::class,'restaurant_id','id');
   }
 }
