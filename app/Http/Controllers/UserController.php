@@ -6,7 +6,7 @@ use App\Models\User;
 use App\Models\Role;
 use Illuminate\Http\Request;
 
-class UserRoleController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,7 @@ class UserRoleController extends Controller
     public function index()
     {
         $all_users = User::all();
-        return Controller::response(200,true, Role::with('user')->get());
+        return Controller::response(200,true, User::with('profile')->with('role')->get());
     }
 
     /**

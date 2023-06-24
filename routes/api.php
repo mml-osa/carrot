@@ -40,7 +40,7 @@ Route::group(['prefix'=>'carrot-project/', 'namespace'=>'App\Http\Controllers'],
   });
 
   Route::group(['prefix'=>'user/'], function () {
-    Route::get('all/', [\App\Http\Controllers\UserRoleController::class, 'index']);
+    Route::get('all/', [\App\Http\Controllers\UserController::class, 'index']);
   });
 
   Route::group(['prefix'=>'role/'], function () {
