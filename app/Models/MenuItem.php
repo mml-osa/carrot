@@ -19,11 +19,24 @@ class MenuItem extends Model
   protected $fillable = [
     'menu_item_category_id',
     'name',
-    'description',
     'menu_item_price',
-    'menu_item_size',
+    'menu_item_size_id',
     'is_active',
     'created_by',
     'updated_by',
   ];
+
+  /**
+   * The attributes that should be hidden for serialization.
+   *
+   * @var array<int, string>
+   */
+  protected $hidden = [
+    'alias',
+  ];
+
+  public function menu()
+  {
+    return $this->hasMany(RestaurantMenu::class,'menu_item_category_id','id');
+  }
 }

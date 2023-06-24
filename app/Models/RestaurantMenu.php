@@ -7,16 +7,16 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Laravel\Sanctum\HasApiTokens;
 
-class PaymentMode extends Model
+class RestaurantMenu extends Model
 {
-  use HasApiTokens, HasFactory, UuidGenerator;
+  use HasApiTokens, UuidGenerator;
 
   /**
    * The table name.
    *
    * @var array<string, string>
    */
-  protected $table = 'payment_modes';
+  protected $table = 'restaurant_menus';
 
   /**
    * The primary key of the table.
@@ -31,22 +31,12 @@ class PaymentMode extends Model
    * @var array<int, string>
    */
   protected $fillable = [
-    'name',
-    'alias',
-    'description',
+    'restaurant_id',
+    'menu_item_category_id'
   ];
 
-  /**
-   * The attributes that should be hidden for serialization.
-   *
-   * @var array<int, string>
-   */
-  protected $hidden = [
-    'alias',
-  ];
-
-  public function user()
+  public function restaurant()
   {
-    return $this->belongsTo(Role::class);
+    return $this->hasMany(Restaurant::class);
   }
 }

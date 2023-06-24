@@ -12,7 +12,11 @@ class MenuItemCategoryController extends Controller
      */
     public function index()
     {
-        //
+      try {
+        return Controller::response(200, true, MenuItemCategory::with('items')->get());
+      } catch (\Exception $e) {
+        return Controller::response(400, false, $e->getMessage());
+      }
     }
 
     /**

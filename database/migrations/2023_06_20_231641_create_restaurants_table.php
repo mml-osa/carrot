@@ -15,10 +15,10 @@ return new class extends Migration {
       $table->uuid('id')->primary();
       $table->string('name',225)->nullable(false);
       $table->string('alias',225)->nullable(false);
-      $table->string('email_address',255)->nullable(false);
+      $table->string('email',255)->nullable(false);
       $table->string('phone_number',25)->nullable(false);
-      $table->text('location_address',255)->nullable(false);
-      $table->uuid('created_by')->nullable(false);
+      $table->text('location',255)->nullable(false);
+      $table->uuid('created_by')->nullable(true);
       $table->uuid('updated_by')->nullable(true);
       $table->timestampsTz();
     });

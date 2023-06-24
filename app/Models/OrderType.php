@@ -36,6 +36,15 @@ class OrderType extends Model
     'description',
   ];
 
+  /**
+   * The attributes that should be hidden for serialization.
+   *
+   * @var array<int, string>
+   */
+  protected $hidden = [
+    'alias',
+  ];
+
   public function order()
   {
     return $this->belongsTo(SaleOrder::class);

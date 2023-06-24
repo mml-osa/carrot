@@ -9,7 +9,21 @@ use Laravel\Sanctum\HasApiTokens;
 
 class MenuItemCategory extends Model
 {
-  use HasApiTokens, HasFactory, UuidGenerator;
+  use HasApiTokens, UuidGenerator;
+
+  /**
+   * The table name.
+   *
+   * @var array<string, string>
+   */
+  protected $table = 'menu_item_categories';
+
+  /**
+   * The primary key of the table.
+   *
+   * @var array<string, string>
+   */
+  protected $primaryKey = 'id';
 
   /**
    * The attributes that are mass assignable.
@@ -20,9 +34,20 @@ class MenuItemCategory extends Model
     'name',
     'alias',
     'description',
-    'is_active',
-    'created_by',
-    'updated_by',
   ];
+
+  /**
+   * The attributes that should be hidden for serialization.
+   *
+   * @var array<int, string>
+   */
+  protected $hidden = [
+    'alias',
+  ];
+
+  public function items()
+  {
+    return $this->hasMany(MenuItem::class);
+  }
 
 }

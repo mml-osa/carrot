@@ -36,6 +36,15 @@ class OrderStatus extends Model
     'description',
   ];
 
+  /**
+   * The attributes that should be hidden for serialization.
+   *
+   * @var array<int, string>
+   */
+  protected $hidden = [
+    'alias',
+  ];
+
   public function user()
   {
     return $this->belongsTo(Role::class);

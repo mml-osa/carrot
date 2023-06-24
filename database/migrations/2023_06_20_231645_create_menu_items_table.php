@@ -14,15 +14,13 @@ return new class extends Migration {
     Schema::create('menu_items', function (Blueprint $table) {
       $table->uuid('id')->primary();
       $table->uuid('menu_item_category_id')->nullable(false);
-      $table->foreign('menu_item_category_id')->references('id')->on('menu_item_categories')->onDelete('cascade');
+      $table->foreign('menu_item_category_id')->references('id')->on('menu_item_categories')->cascadeOnDelete()->cascadeOnUpdate();
       $table->string('name', 255)->nullable(false);
-      $table->string('alias', 255)->nullable(false);
-      $table->text('description')->nullable(true);
       $table->double('menu_item_price')->nullable(false);
       $table->uuid('menu_item_size_id')->nullable(false);
-      $table->foreign('menu_item_size_id')->references('id')->on('menu_item_sizes')->onDelete('cascade');
+      $table->foreign('menu_item_size_id')->references('id')->on('menu_item_sizes')->cascadeOnDelete()->cascadeOnUpdate();
       $table->boolean('is_active')->default(true);
-      $table->uuid('created_by')->nullable(false);
+      $table->uuid('created_by')->nullable(true);
       $table->uuid('updated_by')->nullable(true);
       $table->timestampsTz();
     });

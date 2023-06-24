@@ -14,12 +14,12 @@ return new class extends Migration {
     Schema::create('sale_order_deliveries', function (Blueprint $table) {
       $table->uuid('id')->primary();
       $table->uuid('sale_order_id')->nullable(false);
-      $table->foreign('sale_order_id')->references('id')->on('sale_orders')->onDelete('cascade');
+      $table->foreign('sale_order_id')->references('id')->on('sale_orders')->cascadeOnDelete()->cascadeOnUpdate();
       $table->uuid('status_id')->nullable(false);
-      $table->foreign('status_id')->references('id')->on('statuses')->onDelete('cascade');
+      $table->foreign('status_id')->references('id')->on('statuses')->cascadeOnDelete()->cascadeOnUpdate();
       $table->string('delivery_by')->nullable(false);
       $table->text('delivery_notes')->nullable(true);
-      $table->uuid('created_by')->nullable(false);
+      $table->uuid('created_by')->nullable(true);
       $table->uuid('updated_by')->nullable(true);
       $table->timestampsTz();
     });

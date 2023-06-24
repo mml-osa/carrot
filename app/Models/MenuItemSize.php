@@ -36,8 +36,17 @@ class MenuItemSize extends Model
     'description',
   ];
 
-  public function user()
+  /**
+   * The attributes that should be hidden for serialization.
+   *
+   * @var array<int, string>
+   */
+  protected $hidden = [
+    'alias',
+  ];
+
+  public function items()
   {
-    return $this->belongsTo(Role::class);
+    return $this->belongsTo(MenuItem::class);
   }
 }

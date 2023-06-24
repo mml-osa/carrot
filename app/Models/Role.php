@@ -9,7 +9,7 @@ use Laravel\Sanctum\HasApiTokens;
 
 class Role extends Model
 {
-  use HasApiTokens, HasFactory, UuidGenerator;
+  use HasApiTokens, UuidGenerator;
 
   /**
    * The table name.
@@ -34,6 +34,15 @@ class Role extends Model
     'name',
     'alias',
     'description',
+  ];
+
+  /**
+   * The attributes that should be hidden for serialization.
+   *
+   * @var array<int, string>
+   */
+  protected $hidden = [
+    'alias',
   ];
 
   public function user()

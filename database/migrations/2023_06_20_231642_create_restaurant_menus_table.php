@@ -3,7 +3,6 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use App\Models\OrderType;
 
 return new class extends Migration {
   /**
@@ -11,20 +10,18 @@ return new class extends Migration {
    */
   public function up(): void
   {
-    Schema::dropIfExists('order_types');
-    Schema::create('order_types', function (Blueprint $table) {
+    Schema::dropIfExists('restaurant_menus');
+    Schema::create('restaurant_menus', function (Blueprint $table) {
       $table->uuid('id')->primary();
-      $table->string('name', 35)->nullable(false);
-      $table->string('alias', 35)->nullable(true);
-      $table->text('description')->nullable(true);
+      $table->uuid('restaurant_id')->nullable(false);
+      $table->foreign('restaurant_id')->references('id')->on('restaurants')->cascadeOnDelete()->cascadeOnUpdate();
+      $table->uuid('menu_item_category_id')->nullable(false);
+      $table->foreign('menu_item_category_id')->references('id')->on('menu_item_categories')->cascadeOnDelete()->cascadeOnUpdate();
       $table->boolean('is_active')->default(true);
       $table->uuid('created_by')->nullable(true);
       $table->uuid('updated_by')->nullable(true);
       $table->timestampsTz();
     });
-
-    OrderType::create(['name'=>'Delivery','alias'=>'online','description'=>'Request to deliver order']);
-    OrderType::create(['name'=>'Pickup','alias'=>'delivery','description'=>'Request to pick up order']);
   }
 
   /**
@@ -32,6 +29,6 @@ return new class extends Migration {
    */
   public function down(): void
   {
-    Schema::dropIfExists('order_types');
+    Schema::dropIfExists('restaurant_menus');
   }
 };

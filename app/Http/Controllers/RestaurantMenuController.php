@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\MenuItem;
 use App\Models\Restaurant;
+use App\Models\RestaurantMenu;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
-class MenuItemController extends Controller
+class RestaurantMenuController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +15,7 @@ class MenuItemController extends Controller
     public function index()
     {
       try {
-        return Controller::response(200, true, MenuItem::with('menu')->get());
+        return Controller::response(200, true, RestaurantMenu::with('restaurant')->get());
       } catch (\Exception $e) {
         return Controller::response(400, false, $e->getMessage());
       }
@@ -28,18 +28,16 @@ class MenuItemController extends Controller
     {
       try {
         $validator = Validator::make($request->all(), [
+          "restaurant_id" => 'required|uuid',
           "menu_item_category_id" => 'required|uuid',
-          "name" => 'required|string|min:1|max:255',
-          "menu_item_price" => 'required|integer',
-          "menu_item_size_id" => 'required|uuid',
         ]);
 
         if ($validator->fails()) {
           return Controller::response(400, false, $validator->errors()->all());
         }
 
-        $store = MenuItem::create($request->all());
-        return Controller::response(201, true, MenuItem::where('id', $store->id)->with('menu')->get());
+        $store = RestaurantMenu::create($request->all());
+        return Controller::response(201, true, RestaurantMenu::where('id', $store->id)->with('menu')->get());
       } catch (\Exception $e) {
         return Controller::response(400, false, $e->getMessage());
       }
@@ -48,7 +46,7 @@ class MenuItemController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(MenuItem $menuItem)
+    public function show(RestaurantMenu $restaurantMenu)
     {
         //
     }
@@ -56,7 +54,7 @@ class MenuItemController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(MenuItem $menuItem)
+    public function edit(RestaurantMenu $restaurantMenu)
     {
         //
     }
@@ -64,7 +62,7 @@ class MenuItemController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, MenuItem $menuItem)
+    public function update(Request $request, RestaurantMenu $restaurantMenu)
     {
         //
     }
@@ -72,7 +70,7 @@ class MenuItemController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(MenuItem $menuItem)
+    public function destroy(RestaurantMenu $restaurantMenu)
     {
         //
     }

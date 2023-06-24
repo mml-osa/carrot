@@ -18,6 +18,8 @@ return new class extends Migration {
       $table->string('alias', 255)->nullable(false);
       $table->text('description')->nullable(true);
       $table->boolean('is_active')->default(true);
+      $table->uuid('created_by')->nullable(true);
+      $table->uuid('updated_by')->nullable(true);
       $table->timestampsTz();
     });
 
