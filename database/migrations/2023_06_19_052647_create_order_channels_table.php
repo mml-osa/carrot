@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use App\Models\OrderChannel;
 
 return new class extends Migration {
   /**
@@ -17,10 +18,12 @@ return new class extends Migration {
       $table->string('alias', 35)->nullable(true);
       $table->text('description')->nullable(true);
       $table->boolean('is_active')->default(true);
-      $table->uuid('created_by')->nullable(true);
-      $table->uuid('updated_by')->nullable(true);
       $table->timestampsTz();
     });
+
+    OrderChannel::create(['name'=>'Online','alias'=>'online','description'=>'Order was made online']);
+    OrderChannel::create(['name'=>'Walk In','alias'=>'walk_in','description'=>'Order was a walk-in']);
+    OrderChannel::create(['name'=>'Phone call','alias'=>'phone_call','description'=>'Order was made via phone call']);
   }
 
   /**

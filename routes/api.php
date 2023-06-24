@@ -21,7 +21,7 @@ Route::get('/test', function (){
 
 Route::group(['prefix'=>'carrot-project/', 'namespace'=>'App\Http\Controllers'], function () {
 
-  Route::group(['prefix'=>'restaurant/'], function () {
+  Route::group(['prefix'=>'restaurants/'], function () {
     Route::get('all/', function () {
       return 'Restaurant Working!';
     });
@@ -33,22 +33,26 @@ Route::group(['prefix'=>'carrot-project/', 'namespace'=>'App\Http\Controllers'],
     });
   });
 
-  Route::group(['prefix'=>'order/'], function () {
+  Route::group(['prefix'=>'orders/'], function () {
     Route::get('all-orders/', function () {
       return 'Order Working!';
     });
   });
 
-  Route::group(['prefix'=>'user/'], function () {
-    Route::get('get/', [\App\Http\Controllers\UserController::class, 'index']);
-    Route::post('create/', [\App\Http\Controllers\UserController::class, 'create']);
+  Route::group(['prefix'=>'users/'], function () {
+    Route::get('get', [\App\Http\Controllers\UserController::class, 'index']);
+    Route::get('get/{user}', [\App\Http\Controllers\UserController::class, 'show']);
+    Route::post('create', [\App\Http\Controllers\UserController::class, 'create']);
     Route::put('update/{user}', [\App\Http\Controllers\UserController::class, 'update']);
     Route::delete('delete/{user}', [\App\Http\Controllers\UserController::class, 'delete']);
   });
 
-  Route::group(['prefix'=>'role/'], function () {
-    Route::get('all/', [\App\Http\Controllers\UserRoleController::class, 'index']);
-    Route::post('store/', [\App\Http\Controllers\UserRoleController::class, 'store']);
+  Route::group(['prefix'=>'roles/'], function () {
+    Route::get('get/', [\App\Http\Controllers\UserRoleController::class, 'index']);
+    Route::get('get/{role}', [\App\Http\Controllers\UserRoleController::class, 'show']);
+    Route::post('create', [\App\Http\Controllers\UserRoleController::class, 'create']);
+    Route::put('update/{role}', [\App\Http\Controllers\UserRoleController::class, 'update']);
+    Route::delete('delete/{role}', [\App\Http\Controllers\UserRoleController::class, 'delete']);
   });
 
 });

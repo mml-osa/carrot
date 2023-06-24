@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use App\Models\OrderType;
 
 return new class extends Migration {
   /**
@@ -17,10 +18,11 @@ return new class extends Migration {
       $table->string('alias', 35)->nullable(true);
       $table->text('description')->nullable(true);
       $table->boolean('is_active')->default(true);
-      $table->uuid('created_by')->nullable(true);
-      $table->uuid('updated_by')->nullable(true);
       $table->timestampsTz();
     });
+
+    OrderType::create(['name'=>'Delivery','alias'=>'online','description'=>'Request to deliver order']);
+    OrderType::create(['name'=>'Pickup','alias'=>'delivery','description'=>'Request to pick up order']);
   }
 
   /**

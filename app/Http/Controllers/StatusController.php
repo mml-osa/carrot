@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\DeliveryStatus;
+use App\Models\Status;
 use Illuminate\Http\Request;
 
-class DeliveryStatusController extends Controller
+class StatusController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -34,7 +34,7 @@ class DeliveryStatusController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(DeliveryStatus $deliveryStatus)
+    public function show(Status $deliveryStatus)
     {
         //
     }
@@ -42,7 +42,7 @@ class DeliveryStatusController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(DeliveryStatus $deliveryStatus)
+    public function edit(Status $deliveryStatus)
     {
         //
     }
@@ -50,7 +50,7 @@ class DeliveryStatusController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, DeliveryStatus $deliveryStatus)
+    public function update(Request $request, Status $deliveryStatus)
     {
         //
     }
@@ -58,7 +58,7 @@ class DeliveryStatusController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(DeliveryStatus $deliveryStatus)
+    public function destroy(Status $deliveryStatus)
     {
         //
     }
